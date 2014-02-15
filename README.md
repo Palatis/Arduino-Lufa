@@ -52,6 +52,17 @@ That's it! You can now try start the Arduino IDE and compile the examples! :-)
 
 [Arduino-Lufa]:https://github.com/Palatis/Arduino-Lufa
 
+## Note
+* By uploading the sketch to the board, you lose the ability to reset the board with setting-up 1200 baudrate, connect, then disconnect. This is used by the Arduino IDE to reset the board while uploading sketch. You can to manually reset the board by pressing the hardware reset button when the console prompts something similar to:
+
+<code>Forcing reset using 1200bps open/close on port COM5    
+PORTS {COM1, COM5, COM6, } / {COM1, COM5, COM6, } => {}    
+PORTS {COM1, COM5, COM6, } / {COM1, COM5, COM6, } => {}    
+PORTS {COM1, COM5, COM6, } / {COM1, COM5, COM6, } => {}    
+...</code>
+
+* If done correctly, the LED on pin 13 will being fading and you'll see the upload taking progress in the console.
+
 ## Credits
 * Victor Tseng: palatis _AT_ gmail _DOT_ com
 * Arduino: http://arduino.cc
