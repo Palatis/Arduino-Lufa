@@ -122,9 +122,7 @@ void SetupHardware(void)
 
 	/* Hardware Initialization */
 	USB_Init();
-	
-	/* Enable Start-Of-Frame event */
-	USB_Device_EnableSOFEvents();
+
 }
 
 /** Event handler for the library USB Connection event. */
@@ -144,6 +142,9 @@ void EVENT_USB_Device_ConfigurationChanged(void)
 
 	ConfigSuccess &= CDC_Device_ConfigureEndpoints(&VirtualSerial1_CDC_Interface);
 	ConfigSuccess &= CDC_Device_ConfigureEndpoints(&VirtualSerial2_CDC_Interface);
+	
+	/* Enable Start-Of-Frame event */
+	USB_Device_EnableSOFEvents();
 }
 
 /** Event handler for the library USB Control Request reception event. */
