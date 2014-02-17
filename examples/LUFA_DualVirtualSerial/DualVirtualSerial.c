@@ -122,6 +122,9 @@ void SetupHardware(void)
 
 	/* Hardware Initialization */
 	USB_Init();
+	
+	/* Enable Start-Of-Frame event */
+	USB_Device_EnableSOFEvents();
 }
 
 /** Event handler for the library USB Connection event. */
