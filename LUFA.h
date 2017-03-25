@@ -5,7 +5,7 @@
  * This file is here only because Arduino wants it...
  */
 
-#include <Platform.h>
+#include <Arduino.h>
 #define F_USB F_CPU
 
 #include <LUFA/Drivers/USB/USB.h>

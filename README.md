@@ -20,33 +20,31 @@ Thus, I managed to bring the powerful [LUFA] to Arduino!
 ## Installation
 The installation is quiet tricky, because the stock USB stack is in the arduino core directory instead of a seperated library directory, so you cannot simply drop [Arduino-Lufa] to the library folder under your Sketchbook directory.
 
-There are some more setups besides that...
+The following setup was last tested with arduino-1.8.2 and LUFA 151115 (but it should work with future versions, if there were nor major changes)
 
-1. clone the repository, drop in your `<Sketchbook>/libraries` (for instance, you should have `Sketchbook/libraries/LUFA/LUFA.h` after this step.
-2. download [LUFA], put everything under `LUFA/` to `<Sketchbook>/libraries/LUFA/LUFA` (for instance, you should have `<Sketchbook>/libraries/LUFA/LUFA/Drivers/USB/USB.h` after this step)
+You will neded to modify your arduino installation, so I recommend to create a backup of your arduino installation, naming it "arduino-x.x.x_LUFA". You should not use the modified arduino version with non LUFA projects. (x.x.x. beeing your version number, e.G. 1.8.2)
+
+
+1. clone the repository, drop it in your `arduino-x.x.x_LUFA/libraries` (for instance, you should have `arduino-x.x.x_LUFA/libraries/LUFA/LUFA.h` after this step.
+2. download [LUFA], put everything under `LUFA/` to `arduino-x.x.x_LUFA/libraries/LUFA/LUFA` (for instance, you should have `arduino-x.x.x_LUFA/libraries/LUFA/LUFA/Drivers/USB/USB.h` after this step)
 3. delete the stock USB stack from Arduino environment, there are 6 files to be deleted:
-  1. `Arduino/hardware/arduino/avr/cores/arduino/CDC.cpp`
-  2. `Arduino/hardware/arduino/avr/cores/arduino/HID.cpp`
-  3. `Arduino/hardware/arduino/avr/cores/arduino/USBApi.h`
-  4. `Arduino/hardware/arduino/avr/cores/arduino/USBCore.cpp`
-  5. `Arduino/hardware/arduino/avr/cores/arduino/USBCore.h`
-  6. `Arduino/hardware/arduino/avr/cores/arduino/USBDesc.h`
-4. edit these 3 files to remove all USB related stuff (if you just dunno how, replace them with the files from `ArduinoHardwareAVR` folder):
-  1. `Arduino/hardware/arduino/avr/cores/arduino/Arduino.h`
-    * 222: `#include "USBAPI.h"`
-    * 223: `#if defined(HAVE_HWSERIAL0) && defined(HAVE_CDCSERIAL)`
-    * 224: `#error "Targets with both UART0 and CDC serial not supported"`
-    * 225: `#endif`
-  2. `Arduino/hardware/arduino/avr/cores/arduino/main.cpp`
-    * 26: `#if defined(USBCON)`
-    * 27: `USBDevice.attach();`
-    * 28: `#endif`
-  3. `Arduino/hardware/arduino/avr/cores/arduino/Platform.h`
-    * 17: `#if defined(USBCON)`
-    * 18: `#include "USBDesc.h"`
-	* 19: `#include "USBCore.h"`
-	* 20: `#include "USBAPI.h"`
-    * 21: `#endif /* if defined(USBCON) */`
+  1. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/CDC.cpp`
+  2. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/PluggableUSB.cpp`
+  3. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/PluggableUSB.h`
+  4. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/USBApi.h`
+  5. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/USBCore.cpp`
+  6. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/USBCore.h`
+  7. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/USBDesc.h`
+4. edit the following files and remove the shown lines:
+  1. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/Arduino.h`
+    * 233: `#include "USBAPI.h"`
+    * 234: `#if defined(HAVE_HWSERIAL0) && defined(HAVE_CDCSERIAL)`
+    * 235: `#error "Targets with both UART0 and CDC serial not supported"`
+    * 236: `#endif`
+  2. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/main.cpp`
+    * 39: `#if defined(USBCON)`
+    * 40: `USBDevice.attach();`
+    * 41: `#endif`
 
 That's it! You can now try start the Arduino IDE and compile the examples! :-)
 
@@ -64,7 +62,8 @@ PORTS {COM1, COM5, COM6, } / {COM1, COM5, COM6, } => {}
 * If done correctly, the LED on pin 13 will being fading and you'll see the upload taking progress in the console.
 
 ## Credits
-* Victor Tseng: palatis _AT_ gmail _DOT_ com
+* Victor Tseng: palatis _AT_ gmail _DOT_ com (Original Author)
+* Daniel Korgel (Contributor)
 * Arduino: http://arduino.cc
 * LUFA: http://www.fourwalledcubicle.com/LUFA.php
 
