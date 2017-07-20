@@ -41,7 +41,7 @@
 
 		#include <avr/pgmspace.h>
 
-		#include <LUFA/Drivers/USB/USB.h>
+		#include <LUFA/LUFA/Drivers/USB/USB.h>
 
 	/* Macros: */
 		/** Endpoint address of the first CDC interface's device-to-host data IN endpoint. */

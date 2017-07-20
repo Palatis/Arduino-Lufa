@@ -8,6 +8,6 @@
 #include <Arduino.h>
 #define F_USB F_CPU
 
-#include <LUFA/Drivers/USB/USB.h>
+#include <LUFA/LUFA/Drivers/USB/USB.h>
 
 #endif
