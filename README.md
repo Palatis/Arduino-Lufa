@@ -20,7 +20,7 @@ Thus, I managed to bring the powerful [LUFA] to Arduino!
 ## Installation
 The installation is quiet tricky, because the stock USB stack is in the arduino core directory instead of a seperated library directory, so you cannot simply drop [Arduino-Lufa] to the library folder under your Sketchbook directory.
 
-    The following setup was last tested with arduino-1.8.2 and LUFA 151115 
+    The following setup was last tested with arduino-1.8.3 and LUFA 170418 
     (but it should work with future versions, if there were no major changes)
 
 You will neded to modify your arduino installation, so I recommend to create a backup, naming it "arduino-x.x.x_LUFA". (x.x.x. beeing your version number, e.G. 1.8.2)
