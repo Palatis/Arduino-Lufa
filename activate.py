@@ -8,12 +8,21 @@ To deactivate LUFA and activate Arduinos USB stack, use the deactivate.py script
 
 import textwrap
 import re
+import os
+
+# Get absolute paths
+ARDUINO_LUFA_DIR = os.path.dirname(__file__)
+ARDUINO_DIR = os.path.abspath(os.path.join(ARDUINO_LUFA_DIR, '../..'))
+
+def absolute_path(path):
+    """Converts path relative to ARDUINO_DIR to absolute one"""
+    return os.path.abspath(os.path.join(ARDUINO_DIR, path))
 
 #---------------------#
 # File path constants #
 #---------------------#
 
-ARDUINO_CORE_DIR = '../../hardware/arduino/avr/cores/arduino/'
+ARDUINO_CORE_DIR = 'hardware/arduino/avr/cores/arduino/'
 
 FILES_TO_BLOCK = [
     'CDC.cpp',
@@ -76,6 +85,7 @@ def hide_section_in_file(path, section):
     """
 
     file_content = ""
+    path = absolute_path(path)
 
     with open(path, 'r') as original:
         file_content = original.read()
@@ -121,6 +131,7 @@ def unhide_section_in_file(path):
     """Make previously hidden section available again"""
 
     file_content = ""
+    path = absolute_path(path)
 
     with open(path, 'r') as original:
         file_content = original.read()
@@ -162,7 +173,7 @@ def get_arduino_ide_version():
     version_line = ""
 
     # Read changelog file. The first line always starts with 'ARDUINO X.Y.Z'
-    with open('../../revisions.txt', 'r') as revisions:
+    with open(absolute_path('revisions.txt'), 'r') as revisions:
         version_line = revisions.readline()
 
     # Extract version number as string
@@ -185,14 +196,14 @@ def main_common(block_and_hide):
         print('Compatible Arduino IDE version {} detected!' .format(arduino_ide_version))
 
     for file_to_block in FILES_TO_BLOCK:
-        path = ARDUINO_CORE_DIR + file_to_block
+        path = os.path.join(ARDUINO_CORE_DIR, file_to_block)
         if block_and_hide:
             hide_whole_file(path)
         else:
             unhide_whole_file(path)
 
     for in_file, section in SECTIONS_TO_HIDE_IN_FILES.items():
-        path = ARDUINO_CORE_DIR + in_file
+        path = os.path.join(ARDUINO_CORE_DIR, in_file)
         if block_and_hide:
             hide_section_in_file(path, section)
         else:
