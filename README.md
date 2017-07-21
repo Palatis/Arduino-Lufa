@@ -67,6 +67,7 @@ PORTS {COM1, COM5, COM6, } / {COM1, COM5, COM6, } => {}
 ## Credits
 * Victor Tseng: palatis _AT_ gmail _DOT_ com (Original Author)
 * Daniel Korgel (Contributor)
+* Felix Uhl (Contributor)
 * Arduino: http://arduino.cc
 * LUFA: http://www.fourwalledcubicle.com/LUFA.php
 
