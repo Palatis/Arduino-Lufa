@@ -49,15 +49,21 @@ Alternatively, there are instructions for [manual installation].
 
 ## First run and use
 
-To test Arduino-Lufa, open the LUFA_DualVirtualSerial example and click __Verify__. (See Note below on __Upload__ing)
+To test Arduino-Lufa, open the LUFA_DualVirtualSerial example and click __Verify__. (See Note on __Upload__ below)
 
-![File -> Examples -> Examples for any board -> LUFA -> LUFA_DualVirtualSerial](docs/open_example.png)
+<img src="docs/open_example.png" height="250"
+alt="File -> Examples -> Examples for any board -> LUFA -> LUFA_DualVirtualSerial"
+title="File -> Examples -> Examples for any board -> LUFA -> LUFA_DualVirtualSerial"
+/>
 
 To use Arduino-Lufa, include it as a library in your sketch:
 
-![Sketch -> Include Library -> Contributed Libraries -> LUFA](docs/include_library.png)
+<img src="docs/include_library.png" height="250"
+alt="Sketch -> Include Library -> Contributed Libraries -> LUFA"
+title="Sketch -> Include Library -> Contributed Libraries -> LUFA"
+/>
 
-### Note on uploading LUFA_DualVirtualSerial sketch
+### Note on uploading the LUFA_DualVirtualSerial sketch
 
 By uploading this sketch to the board, you will prevent the Arduino IDE from automatically reset the board before uploading another sketch. This is normally done by setting up a seial connection with 1200 baud, connecting, then disconnecting.
 
