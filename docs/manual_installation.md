@@ -1,4 +1,4 @@
-#Manual Installation Instructions
+# Manual Installation Instructions
 
 Manual installation is somewhat tricky, because the stock USB stack is in the arduino core directory instead of a seperated library directory, so you cannot simply drop [Arduino-Lufa] to the library folder under your Sketchbook directory.
 
