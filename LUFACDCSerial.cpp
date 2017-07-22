@@ -84,9 +84,6 @@ size_t LUFACDCSerial::write(uint8_t data)
 		uint8_t r = CDC_Device_SendByte(_CDCInterfaceInfo, data);
 		if (r == ENDPOINT_READYWAIT_NoError) {
 			return r;
-		} else {
-			setWriteError();
-			return 0;
 		}
 	}
 	setWriteError();
