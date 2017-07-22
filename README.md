@@ -1,4 +1,5 @@
 # Arduino-Lufa
+
 =========================
 
 LUFA (Lightweight USB For AVRs) on the Arduino!
@@ -18,55 +19,78 @@ Thus, I managed to bring the powerful [LUFA] to Arduino!
 [LUFA]:http://www.fourwalledcubicle.com/LUFA.php
 
 ## Installation
-The installation is quiet tricky, because the stock USB stack is in the arduino core directory instead of a seperated library directory, so you cannot simply drop [Arduino-Lufa] to the library folder under your Sketchbook directory.
 
-    The following setup was last tested with arduino-1.8.3 and LUFA 170418 
-    (but it should work with future versions, if there were no major changes)
+For the automatic installation, you need to have both git and Python 3.3 (or later) installed. These instructions work on both Linux and Windows.
+Alternatively, there are instructions for [manual installation].
 
-You will neded to modify your arduino installation, so I recommend to create a backup, naming it "arduino-x.x.x_LUFA". (x.x.x. beeing your version number, e.G. 1.8.2)
+1. Close all open Arduino IDE windows!
 
-    You should not use the modified arduino version for non LUFA projects.
+2. Navigate into your Arduino IDE's `libraries` folder. Replace `<arduino_install_path>` with the install path of the Arduino IDE.
 
+    ```
+    $ cd <arduino_install_path>/libraries
+    ```
 
-1. clone the repository, drop it in your `arduino-x.x.x_LUFA/libraries` (for instance, you should have `arduino-x.x.x_LUFA/libraries/LUFA/LUFA.h` after this step.
-2. download [LUFA], put everything under `LUFA/` to `arduino-x.x.x_LUFA/libraries/LUFA/LUFA` (for instance, you should have `arduino-x.x.x_LUFA/libraries/LUFA/LUFA/Drivers/USB/USB.h` after this step)
-3. delete the stock USB stack from Arduino environment, there are 7 files to be deleted:
-    1. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/CDC.cpp`
-    2. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/PluggableUSB.cpp`
-    3. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/PluggableUSB.h`
-    4. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/USBApi.h`
-    5. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/USBCore.cpp`
-    6. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/USBCore.h`
-    7. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/USBDesc.h`
-4. edit the following files and remove the shown lines:
-    1. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/Arduino.h`
-        * 233: `#include "USBAPI.h"`
-        * 234: `#if defined(HAVE_HWSERIAL0) && defined(HAVE_CDCSERIAL)`
-        * 235: `#error "Targets with both UART0 and CDC serial not supported"`
-        * 236: `#endif`
-    2. `arduino-x.x.x_LUFA/hardware/arduino/avr/cores/arduino/main.cpp`
-        * 39: `#if defined(USBCON)`
-        * 40: `USBDevice.attach();`
-        * 41: `#endif`
+3. Clone both Arduino-Lufa and the LUFA submodule:
 
-That's it! You can now try start the Arduino IDE and compile the examples! :-)
+    ```
+    $ git clone --recursive https://github.com/Palatis/Arduino-Lufa.git LUFA
+    ```
 
-[Arduino-Lufa]:https://github.com/Palatis/Arduino-Lufa
+4. Activate LUFA (more on this below)
 
-## Note
-* By uploading the sketch to the board, you lose the ability to reset the board with setting-up 1200 baudrate, connect, then disconnect. This is used by the Arduino IDE to reset the board while uploading sketch. You can to manually reset the board by pressing the hardware reset button when the console prompts something similar to:
+    ```
+    $ ./LUFA/activate.py
+    ```
 
-<code>Forcing reset using 1200bps open/close on port COM5    
-PORTS {COM1, COM5, COM6, } / {COM1, COM5, COM6, } => {}    
-PORTS {COM1, COM5, COM6, } / {COM1, COM5, COM6, } => {}    
-PORTS {COM1, COM5, COM6, } / {COM1, COM5, COM6, } => {}    
-...</code>
+5. Done! Proceed with the steps below to try out Arduino-Lufa
 
-* If done correctly, the LED on pin 13 will being fading and you'll see the upload taking progress in the console.
+[manual installation]:docs/manual_installation.md
+
+## First run and use
+
+To test Arduino-Lufa, open the LUFA_DualVirtualSerial example and click __Verify__. (See Note on __Upload__ below)
+
+<img src="docs/open_example.png" height="250"
+alt="File -> Examples -> Examples for any board -> LUFA -> LUFA_DualVirtualSerial"
+title="File -> Examples -> Examples for any board -> LUFA -> LUFA_DualVirtualSerial"
+/>
+
+To use Arduino-Lufa, include it as a library in your sketch:
+
+<img src="docs/include_library.png" height="250"
+alt="Sketch -> Include Library -> Contributed Libraries -> LUFA"
+title="Sketch -> Include Library -> Contributed Libraries -> LUFA"
+/>
+
+### Note on uploading the LUFA_DualVirtualSerial sketch
+
+By uploading this sketch to the board, you will prevent the Arduino IDE from automatically reset the board before uploading another sketch. This is normally done by setting up a seial connection with 1200 baud, connecting, then disconnecting.
+
+You can, however, manually reset the board by pressing the hardware reset button when the upload starts. To better see this, enable "Show verbose output during upload" in your preferences and wait until the IDE repatedly prompts something like this:
+
+```
+PORTS {COM1, COM5, COM6, } / {COM1, COM5, COM6, } => {}
+```
+
+If done correctly, the LED on pin 13 will begin flashing and you'll see the upload progressing in the console.
+
+This is not permanent, however. To go back to the original state, upload a sketch compiled without Arduino-Lufa, as explained below.
+
+## Deactivating Arduino-Lufa
+
+If you need to compile sketches that use the Arduino Core USB Stack, you'll have to deactivate LUFA like so:
+
+```
+$ ./<arduino_install_path>/libraries/LUFA/deactivate.py
+```
+
+If you work with a lot of different boards and find switching tedious, it is recommended to copy your Arduino IDE into a new directory called something like `Arduino-LUFA`, and activiting LUFA only in that installation. To avoid confusion, you can then also delete `libraries/LUFA` from the original install, but make sure to run `deactivate.py` first!
 
 ## Credits
 * Victor Tseng: palatis _AT_ gmail _DOT_ com (Original Author)
 * Daniel Korgel (Contributor)
+* Felix Uhl (Contributor)
 * Arduino: http://arduino.cc
 * LUFA: http://www.fourwalledcubicle.com/LUFA.php
 
