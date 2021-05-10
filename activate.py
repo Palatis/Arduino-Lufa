@@ -7,8 +7,10 @@ To deactivate LUFA and activate Arduinos USB stack, use the deactivate.py script
 """
 
 import textwrap
+import fileinput
 import re
 import os
+import shutil
 
 # Get absolute paths
 ARDUINO_LUFA_DIR = os.path.dirname(__file__)
@@ -22,7 +24,11 @@ def absolute_path(path):
 # File path constants #
 #---------------------#
 
+ARDUINO_HARDWARE_DIR = 'hardware/arduino'
+ARDUINO_LUFA_HARDWARE_DIR = 'hardware/arduino-LUFA'
 ARDUINO_CORE_DIR = 'hardware/arduino/avr/cores/arduino/'
+ARDUINO_LUFA_CORE_DIR = 'hardware/arduino-LUFA/avr/cores/arduino/'
+ARDUINO_LUFA_AVR_DIR = 'hardware/arduino-LUFA/avr'
 
 FILES_TO_BLOCK = [
     'CDC.cpp',
@@ -165,7 +171,7 @@ def unhide_section_in_file(path):
 #--------------------------#
 # Arudino version checking #
 #--------------------------#
-SUPPORTED_ARDUINO_IDE_VERSIONS = ['1.8.2', '1.8.3']
+SUPPORTED_ARDUINO_IDE_VERSIONS = ['1.8.2', '1.8.3', '1.8.13']
 
 def get_arduino_ide_version():
     """Determine Arduino IDE version"""
@@ -177,14 +183,14 @@ def get_arduino_ide_version():
         version_line = revisions.readline()
 
     # Extract version number as string
-    version_string = re.findall('[0-9].[0-9].[0-9]', version_line)[0]
+    version_string = re.findall('[0-9].[0-9].[0-9][0-9]?', version_line)[0]
 
     return version_string
 
 #----------------#
 # Main functions #
 #----------------#
-def main_common(block_and_hide):
+def main_common(block_and_hide, folder):
     """Common functionality for activate and deactivate scripts"""
 
     arduino_ide_version = get_arduino_ide_version()
@@ -196,26 +202,54 @@ def main_common(block_and_hide):
         print('Compatible Arduino IDE version {} detected!' .format(arduino_ide_version))
 
     for file_to_block in FILES_TO_BLOCK:
-        path = os.path.join(ARDUINO_CORE_DIR, file_to_block)
+        path = os.path.join(folder, file_to_block)
         if block_and_hide:
             hide_whole_file(path)
         else:
             unhide_whole_file(path)
 
     for in_file, section in SECTIONS_TO_HIDE_IN_FILES.items():
-        path = os.path.join(ARDUINO_CORE_DIR, in_file)
+        path = os.path.join(folder, in_file)
         if block_and_hide:
             hide_section_in_file(path, section)
         else:
             unhide_section_in_file(path)
 
+def copy_hardware_dir():
+    shutil.copytree(absolute_path(ARDUINO_HARDWARE_DIR),absolute_path(ARDUINO_LUFA_HARDWARE_DIR))
+
+def update_platform():
+    myfile = fileinput.FileInput(absolute_path(os.path.join(ARDUINO_LUFA_AVR_DIR, "platform.txt")), inplace=True)
+
+    for line in myfile:
+        line = re.sub(r"name=(.*) AVR", r"name=\1 LUFA AVR", line.rstrip())
+        print(line)
+
+def update_boards():
+    myfile = fileinput.FileInput(absolute_path(os.path.join(ARDUINO_LUFA_AVR_DIR, "boards.txt")), inplace=True)
+
+    for line in myfile:
+        line = re.sub(r"name=(.*)", r"name=\1 (LUFA)", line.rstrip())
+        print(line)
+
 def activate():
     """Activate function"""
-    main_common(True)
+    main_common(True, ARDUINO_CORE_DIR)
 
 def deactivate():
     """Deactivate function"""
-    main_common(False)
+    main_common(False, ARDUINO_CORE_DIR)
 
+def install():
+    """Install function"""
+    copy_hardware_dir()
+    main_common(True, ARDUINO_LUFA_CORE_DIR)
+    update_platform()
+    update_boards()
+
+def uninstall():
+    """Uninstall function"""
+    shutil.rmtree(absolute_path(ARDUINO_LUFA_HARDWARE_DIR))
+ 
 if __name__ == '__main__':
     activate()

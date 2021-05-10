@@ -37,10 +37,10 @@ Alternatively, there are instructions for [manual installation].
     $ git clone --recursive https://github.com/Palatis/Arduino-Lufa.git LUFA
     ```
 
-4. Activate LUFA (more on this below)
+4. Install LUFA boards (more on this below)
 
     ```
-    $ ./LUFA/activate.py
+    $ ./LUFA/install.py
     ```
 
 5. Done! Proceed with the steps below to try out Arduino-Lufa
@@ -49,7 +49,9 @@ Alternatively, there are instructions for [manual installation].
 
 ## First run and use
 
-To test Arduino-Lufa, open the LUFA_DualVirtualSerial example and click __Verify__. (See Note on __Upload__ below)
+To test Arduino-Lufa, open the LUFA_DualVirtualSerial example, select your board type from
+the `Tools > Board > Arduino LUFA AVR Boards` submenu and click __Verify__. 
+(See Note on __Upload__ below)
 
 <img src="docs/open_example.png" height="250"
 alt="File -> Examples -> Examples for any board -> LUFA -> LUFA_DualVirtualSerial"
@@ -79,18 +81,32 @@ This is not permanent, however. To go back to the original state, upload a sketc
 
 ## Deactivating Arduino-Lufa
 
-If you need to compile sketches that use the Arduino Core USB Stack, you'll have to deactivate LUFA like so:
+If you need to compile sketches that use the Arduino Core USB Stack, you'll need to select the board type from
+the `Tools > Board > Arduino AVR Boards` submenu.
+
+If you used the `activate.py` script to change the main core files (legacy method), then you'll have to deactivate
+LUFA like so:
 
 ```
 $ ./<arduino_install_path>/libraries/LUFA/deactivate.py
 ```
 
-If you work with a lot of different boards and find switching tedious, it is recommended to copy your Arduino IDE into a new directory called something like `Arduino-LUFA`, and activiting LUFA only in that installation. To avoid confusion, you can then also delete `libraries/LUFA` from the original install, but make sure to run `deactivate.py` first!
+Uninstalling the LUFA AVR Boards can be done like so: 
+
+```
+$ ./<arduino_install_path>/libraries/LUFA/uninstall.py
+```
+
+or simply by deleting the `./<arduino_install_path>/hardware/arduino-LUFA` folder.
+
+If you work with a lot of different boards and find switching tedious, it is recommended to use the `install.py` script
+so that you can always switch to and from LUFA by selecting the Arduino board from the relevant submenu.
 
 ## Credits
 * Victor Tseng: palatis _AT_ gmail _DOT_ com (Original Author)
 * Daniel Korgel (Contributor)
 * Felix Uhl (Contributor)
+* CrazyRedMachine (Contributor)
 * Arduino: http://arduino.cc
 * LUFA: http://www.fourwalledcubicle.com/LUFA.php
 
