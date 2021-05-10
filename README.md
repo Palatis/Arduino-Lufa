@@ -51,7 +51,8 @@ Alternatively, there are instructions for [manual installation].
 
 To test Arduino-Lufa, open the LUFA_DualVirtualSerial example, select your board type from
 the `Tools > Board > Arduino LUFA AVR Boards` submenu and click __Verify__. 
-(See Note on __Upload__ below)
+(**Note**: some of the AVR boards are untested and might prove to be incompatible, 
+please open an issue if you run into this case. Also see Note on __Upload__ below)
 
 <img src="docs/open_example.png" height="250"
 alt="File -> Examples -> Examples for any board -> LUFA -> LUFA_DualVirtualSerial"

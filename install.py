@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from activate import install
 """
 Script to install LUFA boards for Arduino.

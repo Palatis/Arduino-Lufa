@@ -1,4 +1,4 @@
-#!python3
+#!/usr/bin/env python3
 """
 Script to activate LUFA for Arduino.
 When LUFA is active, Arduinos USB stack is deactivated and cannot be compiled against.
@@ -171,7 +171,7 @@ def unhide_section_in_file(path):
 #--------------------------#
 # Arudino version checking #
 #--------------------------#
-SUPPORTED_ARDUINO_IDE_VERSIONS = ['1.8.2', '1.8.3', '1.8.13']
+SUPPORTED_ARDUINO_IDE_VERSIONS = ['1.8.2', '1.8.3', '1.8.12', '1.8.13']
 
 def get_arduino_ide_version():
     """Determine Arduino IDE version"""

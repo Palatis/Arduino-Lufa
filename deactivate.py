@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from activate import deactivate
 """
 Script to deactivate LUFA for Arduino.
