@@ -226,11 +226,25 @@ def update_platform():
         print(line)
 
 def update_boards():
+    unsupported = []
     myfile = fileinput.FileInput(absolute_path(os.path.join(ARDUINO_LUFA_AVR_DIR, "boards.txt")), inplace=True)
 
+    #first pass: append (LUFA) to names and check for unsupported boards
     for line in myfile:
         line = re.sub(r"name=(.*)", r"name=\1 (LUFA)", line.rstrip())
+
+        if "build.mcu=" in line and not "atmega32u4" in line:
+             unsup = line.split(".",1)[0]
+             unsupported.append(unsup)
         print(line)
+
+    #second pass: filter unsupported boards
+    myfile = fileinput.FileInput(absolute_path(os.path.join(ARDUINO_LUFA_AVR_DIR, "boards.txt")), inplace=True)
+    for line in myfile:
+        if line.split(".",1)[0] in unsupported:
+            line = "#" + line
+            line = re.sub(r"LUFA", r"LUFA not supported", line.rstrip())
+        print(line.rstrip())
 
 def activate():
     """Activate function"""
