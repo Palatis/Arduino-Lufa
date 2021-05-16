@@ -1,0 +1,68 @@
+{
+  "packages":
+  [
+    {
+      "name": "Arduino-LUFA",
+      "maintainer": "Victor Tseng, CrazyRedMachine, Felix Uhl, Daniel Korgel",
+      "websiteURL": "https://github.com/Palatis/Arduino-Lufa/",
+      "email" : "arduino@arduino-lufa.com",
+      "platforms":
+      [
+        {
+          "name": "Arduino LUFA AVR Boards",
+          "architecture": "avr",
+          "version": "1.8.3",
+          "category": "Contributed",
+          "url": "https://github.com/CrazyRedMachine/Arduino-LUFA/raw/library/custom_boards/arduino-LUFA-1.8.3.zip",
+          "archiveFileName": "arduino-LUFA-1.8.3.zip",
+          "checksum": "SHA-256:ab87bab9a53b5e449123880cd5f5f3109a5fcf69e1f9a1cef5157205ab3d84ff",
+          "size": "189504",
+          "boards": [
+            {
+              "name": "Arduino Yún (LUFA)"
+            },
+            {
+              "name": "Arduino Leonardo (LUFA)"
+            },
+            {
+              "name": "Arduino Leonardo ETH (LUFA)"
+            },
+            {
+              "name": "Arduino Micro (LUFA)"
+            },
+            {
+              "name": "Arduino Esplora (LUFA)"
+            },
+            {
+              "name": "LilyPad Arduino USB (LUFA)"
+            },
+            {
+              "name": "Arduino Robot Control (LUFA)"
+            },
+            {
+              "name": "Arduino Robot Motor (LUFA)"
+            },
+            {
+              "name": "Adafruit Circuit Playground (LUFA)"
+            },
+            {
+              "name": "Arduino Yún Mini (LUFA)"
+            },
+            {
+              "name": "Arduino Industrial 101 (LUFA)"
+            },
+            {
+              "name": "Linino One (LUFA)"
+            }
+          ],
+          "toolsDependencies":
+          [
+          ]
+        }
+      ],
+      "tools":
+      [
+      ]
+    }
+  ]
+}
