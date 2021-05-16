@@ -58,6 +58,57 @@
           "toolsDependencies":
           [
           ]
+        },
+		{
+          "name": "Arduino LUFA AVR Boards",
+          "architecture": "avr",
+          "version": "0.93",
+          "category": "Contributed",
+          "url": "https://github.com/CrazyRedMachine/Arduino-Lufa/archive/refs/tags/0.93.zip",
+          "archiveFileName": "Arduino-Lufa-0.93.zip",
+          "checksum": "SHA-256:03af6c5dd51fd3b6cf9e73503cd540631bd6a204e4c6f0370b248d06597671af",
+          "size": "7100507",
+          "boards": [
+            {
+              "name": "Arduino Yún (LUFA)"
+            },
+            {
+              "name": "Arduino Leonardo (LUFA)"
+            },
+            {
+              "name": "Arduino Leonardo ETH (LUFA)"
+            },
+            {
+              "name": "Arduino Micro (LUFA)"
+            },
+            {
+              "name": "Arduino Esplora (LUFA)"
+            },
+            {
+              "name": "LilyPad Arduino USB (LUFA)"
+            },
+            {
+              "name": "Arduino Robot Control (LUFA)"
+            },
+            {
+              "name": "Arduino Robot Motor (LUFA)"
+            },
+            {
+              "name": "Adafruit Circuit Playground (LUFA)"
+            },
+            {
+              "name": "Arduino Yún Mini (LUFA)"
+            },
+            {
+              "name": "Arduino Industrial 101 (LUFA)"
+            },
+            {
+              "name": "Linino One (LUFA)"
+            }
+          ],
+          "toolsDependencies":
+          [
+          ]
         }
       ],
       "tools":
