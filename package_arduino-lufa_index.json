@@ -11,12 +11,12 @@
         {
           "name": "Arduino LUFA AVR Boards",
           "architecture": "avr",
-          "version": "1.8.3",
+          "version": "0.9",
           "category": "Contributed",
-          "url": "https://github.com/CrazyRedMachine/Arduino-LUFA/raw/library/custom_boards/arduino-LUFA-1.8.3.zip",
-          "archiveFileName": "arduino-LUFA-1.8.3.zip",
-          "checksum": "SHA-256:ab87bab9a53b5e449123880cd5f5f3109a5fcf69e1f9a1cef5157205ab3d84ff",
-          "size": "189504",
+          "url": "https://github.com/CrazyRedMachine/Arduino-Lufa/archive/refs/tags/0.9.zip",
+          "archiveFileName": "Arduino-Lufa-0.9.zip",
+          "checksum": "SHA-256:84f4dd9ecc87745211c7d763727197210a15d3e638c6d2dfb5fb049bf35871fd",
+          "size": "255673",
           "boards": [
             {
               "name": "Arduino Yún (LUFA)"
