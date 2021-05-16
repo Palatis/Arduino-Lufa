@@ -11,7 +11,3 @@
 *.lai
 *.la
 *.a
-
-# LUFA
-libraries/Arduino-LUFA/LUFA/*
-!libraries/Arduino-LUFA/LUFA/.keep
