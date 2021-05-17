@@ -25,16 +25,17 @@ Alternatively, there are instructions for [manual installation].
 
 1. Close all open Arduino IDE windows!
 
-2. Navigate into your Arduino IDE's `libraries` folder. Replace `<arduino_install_path>` with the install path of the Arduino IDE.
-
-    ```
-    $ cd <arduino_install_path>/libraries
-    ```
-
-3. Clone both Arduino-Lufa and the LUFA submodule:
+2. Clone both Arduino-Lufa and the LUFA submodule:
 
     ```
     $ git clone --recursive https://github.com/Palatis/Arduino-Lufa.git LUFA
+    ```
+
+3. Copy the library to the arduino install path (Replace `<arduino_install_path>` with the install path of the Arduino IDE.):
+
+    ```
+    $ mkdir <arduino_install_path>/libraries/LUFA
+    $ cp -r LUFA/libraries/Arduino-LUFA/* <arduino_install_path>/libraries/LUFA
     ```
 
 4. Install LUFA boards (more on this below)

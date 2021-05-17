@@ -24,7 +24,7 @@ As LUFA requires changes to the Arduino core files, it is installed as custom bo
 
 In the Arduino IDE, go to `File > Preferences`, and in `Additional Boards Manager URLs` add the following entry : `https://github.com/Palatis/Arduino-Lufa/raw/master/package_arduino-lufa_index.json`
 
-<img src="readme_assets/preferences.png" height="250"
+<img src="readme_assets/preferences.png" height="350"
 alt="File > Preferences"
 title="File > Preferences"
 />
@@ -38,7 +38,7 @@ title="Tools > Board > Boards Manager"
 
 Click on install, and `Arduino LUFA AVR Boards` should now appear as a submenu in `Tools > Board`
 
-<img src="readme_assets/boards.png" height="250"
+<img src="readme_assets/boards.png" height="350"
 alt="Tools > Board"
 title="Tools > Board"
 />
@@ -52,11 +52,13 @@ While not recommended, it is still possible to use the [legacy installation] met
 ## First run and use
 
 To test Arduino-Lufa, select your board type from the `Tools > Board > Arduino LUFA AVR Boards`, and open the `File > Examples > Exemple for this board > Arduino-LUFA > LUFA_DualVirtualSerial` example.
+
 Click __Verify__. 
+
 (**Note**: only atmega32u4 based boards are marked as compatible and will appear, if you 
 are using another board which should be compatible please open an issue. Also see Note on __Upload__ below)
 
-<img src="readme_assets/open_example.png" height="250"
+<img src="readme_assets/open_example.png" height="350"
 alt="File -> Examples -> Examples for this board -> Arduino-LUFA -> LUFA_DualVirtualSerial"
 title="File -> Examples -> Examples for this board -> Arduino-LUFA -> LUFA_DualVirtualSerial"
 />
