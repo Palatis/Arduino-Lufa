@@ -1,4 +1,5 @@
 package_arduino-lufa_index.json export-ignore
 README.md export-ignore
+readme_assets export-ignore
 .git* export-ignore
 
