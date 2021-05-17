@@ -8,66 +8,15 @@
       "email" : "arduino@arduino-lufa.com",
       "platforms":
       [
-        {
-          "name": "Arduino LUFA AVR Boards",
-          "architecture": "avr",
-          "version": "0.9",
-          "category": "Contributed",
-          "url": "https://github.com/CrazyRedMachine/Arduino-Lufa/archive/refs/tags/0.9.zip",
-          "archiveFileName": "Arduino-Lufa-0.9.zip",
-          "checksum": "SHA-256:84f4dd9ecc87745211c7d763727197210a15d3e638c6d2dfb5fb049bf35871fd",
-          "size": "255673",
-          "boards": [
-            {
-              "name": "Arduino Yún (LUFA)"
-            },
-            {
-              "name": "Arduino Leonardo (LUFA)"
-            },
-            {
-              "name": "Arduino Leonardo ETH (LUFA)"
-            },
-            {
-              "name": "Arduino Micro (LUFA)"
-            },
-            {
-              "name": "Arduino Esplora (LUFA)"
-            },
-            {
-              "name": "LilyPad Arduino USB (LUFA)"
-            },
-            {
-              "name": "Arduino Robot Control (LUFA)"
-            },
-            {
-              "name": "Arduino Robot Motor (LUFA)"
-            },
-            {
-              "name": "Adafruit Circuit Playground (LUFA)"
-            },
-            {
-              "name": "Arduino Yún Mini (LUFA)"
-            },
-            {
-              "name": "Arduino Industrial 101 (LUFA)"
-            },
-            {
-              "name": "Linino One (LUFA)"
-            }
-          ],
-          "toolsDependencies":
-          [
-          ]
-        },
 		{
           "name": "Arduino LUFA AVR Boards",
           "architecture": "avr",
-          "version": "0.93",
+          "version": "1.0",
           "category": "Contributed",
-          "url": "https://github.com/CrazyRedMachine/Arduino-Lufa/archive/refs/tags/0.93.zip",
-          "archiveFileName": "Arduino-Lufa-0.93.zip",
-          "checksum": "SHA-256:03af6c5dd51fd3b6cf9e73503cd540631bd6a204e4c6f0370b248d06597671af",
-          "size": "7100507",
+          "url": "https://github.com/Palatis/Arduino-Lufa/archive/refs/tags/1.0.zip",
+          "archiveFileName": "Arduino-Lufa-1.0.zip",
+          "checksum": "SHA-256:28f7d599e9373128d3c63884a639f54a9f17e46ac6dec1deb87b65119588b876",
+          "size": "7096621",
           "boards": [
             {
               "name": "Arduino Yún (LUFA)"
