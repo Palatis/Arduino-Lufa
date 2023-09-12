@@ -20,51 +20,50 @@ Thus, I managed to bring the powerful [LUFA] to Arduino!
 
 ## Installation
 
-For the automatic installation, you need to have both git and Python 3.3 (or later) installed. These instructions work on both Linux and Windows.
-Alternatively, there are instructions for [manual installation].
+As LUFA requires changes to the Arduino core files, it is installed as custom boards.
 
-1. Close all open Arduino IDE windows!
+In the Arduino IDE, go to `File > Preferences`, and in `Additional Boards Manager URLs` add the following entry : `https://github.com/Palatis/Arduino-Lufa/raw/master/package_arduino-lufa_index.json`
 
-2. Navigate into your Arduino IDE's `libraries` folder. Replace `<arduino_install_path>` with the install path of the Arduino IDE.
+<img src="readme_assets/preferences.png" height="350"
+alt="File > Preferences"
+title="File > Preferences"
+/>
 
-    ```
-    $ cd <arduino_install_path>/libraries
-    ```
+Restart Arduino IDE, and you should be able to find `Arduino LUFA AVR Boards` in the `Tools > Board > Boards Manager`
 
-3. Clone both Arduino-Lufa and the LUFA submodule:
+<img src="readme_assets/board_manager.png" height="250"
+alt="Tools > Board > Boards Manager"
+title="Tools > Board > Boards Manager"
+/>
 
-    ```
-    $ git clone --recursive https://github.com/Palatis/Arduino-Lufa.git LUFA
-    ```
+Click on install, and `Arduino LUFA AVR Boards` should now appear as a submenu in `Tools > Board`
 
-4. Install LUFA boards (more on this below)
+<img src="readme_assets/boards.png" height="350"
+alt="Tools > Board"
+title="Tools > Board"
+/>
 
-    ```
-    $ ./LUFA/install.py
-    ```
+## Installation (legacy)
 
-5. Done! Proceed with the steps below to try out Arduino-Lufa
+While not recommended, it is still possible to use the [legacy installation] method.
 
-[manual installation]:docs/manual_installation.md
+[legacy installation]:libraries/Arduino-LUFA/README.md
 
 ## First run and use
 
-To test Arduino-Lufa, open the LUFA_DualVirtualSerial example, select your board type from
-the `Tools > Board > Arduino LUFA AVR Boards` submenu and click __Verify__. 
+To test Arduino-Lufa, select your board type from the `Tools > Board > Arduino LUFA AVR Boards`, and open the `File > Examples > Exemple for this board > Arduino-LUFA > LUFA_DualVirtualSerial` example.
+
+Click __Verify__. 
+
 (**Note**: only atmega32u4 based boards are marked as compatible and will appear, if you 
 are using another board which should be compatible please open an issue. Also see Note on __Upload__ below)
 
-<img src="docs/open_example.png" height="250"
-alt="File -> Examples -> Examples for any board -> LUFA -> LUFA_DualVirtualSerial"
-title="File -> Examples -> Examples for any board -> LUFA -> LUFA_DualVirtualSerial"
+<img src="readme_assets/open_example.png" height="350"
+alt="File -> Examples -> Examples for this board -> Arduino-LUFA -> LUFA_DualVirtualSerial"
+title="File -> Examples -> Examples for this board -> Arduino-LUFA -> LUFA_DualVirtualSerial"
 />
 
-To use Arduino-Lufa, include it as a library in your sketch:
-
-<img src="docs/include_library.png" height="250"
-alt="Sketch -> Include Library -> Contributed Libraries -> LUFA"
-title="Sketch -> Include Library -> Contributed Libraries -> LUFA"
-/>
+To use Arduino-Lufa, select a LUFA board and add `#include <LUFA.h>` to your sketch header.
 
 ### Note on uploading the LUFA_DualVirtualSerial sketch
 
@@ -85,23 +84,7 @@ This is not permanent, however. To go back to the original state, upload a sketc
 If you need to compile sketches that use the Arduino Core USB Stack, you'll need to select the board type from
 the `Tools > Board > Arduino AVR Boards` submenu.
 
-If you used the `activate.py` script to change the main core files (legacy method), then you'll have to deactivate
-LUFA like so:
-
-```
-$ ./<arduino_install_path>/libraries/LUFA/deactivate.py
-```
-
-Uninstalling the LUFA AVR Boards can be done like so: 
-
-```
-$ ./<arduino_install_path>/libraries/LUFA/uninstall.py
-```
-
-or simply by deleting the `./<arduino_install_path>/hardware/arduino-LUFA` folder.
-
-If you work with a lot of different boards and find switching tedious, it is recommended to use the `install.py` script
-so that you can always switch to and from LUFA by selecting the Arduino board from the relevant submenu.
+Refer to [legacy installation] document if you previously installed using the legacy method and wish to deactivate Arduino-Lufa
 
 ## Credits
 * Victor Tseng: palatis _AT_ gmail _DOT_ com (Original Author)

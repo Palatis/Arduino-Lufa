@@ -11,7 +11,3 @@
 *.lai
 *.la
 *.a
-
-# LUFA
-LUFA/*
-!LUFA/.keep
